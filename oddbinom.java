@@ -9,7 +9,7 @@ public class oddbinom {
 
         n = input.nextLong();
 
-        System.out.println(numOfOddBinom2(n));
+        System.out.println(numOfOddBinom3(n));
     }
 
     public static int numOfOddBinom(int n){
@@ -62,5 +62,24 @@ public class oddbinom {
         }
 
         return bin;
+    }
+
+    public static long numOfOddBinom3(long n){
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+
+        long highBit = highestBit(n);
+        return (long)Math.pow(3, highBit) + 2*numOfOddBinom3(n - (long)Math.pow(2, highBit));
+    }
+
+    public static long highestBit(long n){
+        long highestBit = -1;
+
+        while(n != 0){
+            highestBit++;
+            n = n/2;
+        }
+
+        return highestBit;
     }
 }
