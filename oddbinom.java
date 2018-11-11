@@ -9,7 +9,7 @@ public class oddbinom {
 
         n = input.nextLong();
 
-        System.out.println(numOfOddBinom3(n));
+        System.out.println(numOfOddBinom4(n));
     }
 
     public static int numOfOddBinom(int n){
@@ -82,4 +82,17 @@ public class oddbinom {
 
         return highestBit;
     }
+
+    public static long numOfOddBinom4(long n){
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+
+        long odd = (long)3 * numOfOddBinom4(n/2);
+
+        if(n % 2 == 0) return odd;
+        else{
+            return odd + (1L << Long.bitCount(n-1));
+        }
+    }
+
 }
